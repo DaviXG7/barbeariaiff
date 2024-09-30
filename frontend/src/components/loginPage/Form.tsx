@@ -1,12 +1,12 @@
-import logo from "../imgs/logo.png";
-import Input from "./defaults/Input";
+import logo from "../../imgs/logo.png";
+import Input from "../defaults/Input";
 import './form.css';
 
 function LoginForm() {
     return(
-        <div className="flex flex-col items-center w-md-1/2 h-1/2">
+        <div className="flex flex-col items-center w-full sm:w-96 h-1/2">
             <img src={logo} className="m-3" alt="" width={75}/>
-            <form action="" className="loginform">
+            <form action="home" method="get" className="loginform">
                 <p className="m-3">
                     Entre na barbearia
                 </p>
