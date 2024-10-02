@@ -1,5 +1,5 @@
 import {ChangeEventHandler} from "react";
-import './input.css';
+import './input.scss';
 
 function Input(props: {name: string, type: string, placeholder: string, label: string}) {
     return (

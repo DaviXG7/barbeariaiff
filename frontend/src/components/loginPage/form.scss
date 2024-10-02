@@ -10,7 +10,8 @@
   border-radius: 10px;
   background: white;
 }
-
-body {
-  background: linear-gradient(90deg, #c49de5, #de7d7d);
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

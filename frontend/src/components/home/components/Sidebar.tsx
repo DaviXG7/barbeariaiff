@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import "./sidebar.scss"
 
 function Sidebar() {
     return (
@@ -12,7 +13,7 @@ function Sidebar() {
             </div>
 
             <div>
-
+                <Link to={""}>User</Link>
             </div>
         </nav>
     )

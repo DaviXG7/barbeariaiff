@@ -1,6 +1,6 @@
 import logo from "../../imgs/logo.png";
+import './form.scss';
 import Input from "../defaults/Input";
-import './form.css';
 
 function LoginForm() {
     return(
