@@ -1,4 +1,5 @@
 import Sidebar from "./components/Sidebar";
+import "./Home.scss"
 
 function Home() {
     return (
