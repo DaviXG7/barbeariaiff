@@ -6,19 +6,13 @@ function Sidebar() {
   return (
     <nav className="sidebar">
       <div className="flex sm:flex-col  lg:items-center">
-        <Link className="btn m-2" to="">
-          Clientes{" "}
-        </Link>
+        <Link className="btn m-2 w-28" to="">Clientes{" "}</Link>
 
-        <Link className="btn m-2" to="">
-          Barbeiros
-        </Link>
+        <Link className="btn m-2 w-28" to="">Barbeiros</Link>
 
-        <Link className="btn m-2" to="">
-          ADM
-        </Link>
+        <Link className="btn m-2 w-28" to="">ADM</Link>
+          <Link className="btn m-2 w-28 mt-16" to="">Pendentes</Link>
       </div>
-      <div className=""></div>
 
       <div className="flex sm:flex-col items-center">
         <Link to={""} className="m-2">

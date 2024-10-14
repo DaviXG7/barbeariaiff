@@ -10,7 +10,7 @@
 
   width: 100%;
 
-  @apply sm:h-full sm:w-32 sm:flex-col;
+  @apply sm:h-full sm:w-40 sm:flex-col;
 
   display: flex;
   align-items: center;
@@ -21,7 +21,7 @@
   border-radius: 314159265px;
 }
 .btn {
-  @apply bg-white bg-opacity-80 hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded transition delay-100;
+  @apply bg-white text-center bg-opacity-80 hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded transition delay-100;
 }
 
 .fundo-sidebar {
