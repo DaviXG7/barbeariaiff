@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    @apply lg:h-40;
+    @apply sm:h-full;
+
+    @apply lg:w-full;
+    @apply sm:w-32;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background: linear-gradient(180deg, #6832d4, #ff5d5d);
+  }
+}
+#caixa {
+  background: linear-gradient(180deg, #6832d4, #ff5d5d);
+  padding-left: 23px;
+  height: 98px;
+  color: white;
+}
+#posição_superior {
+  position: fixed;
+  top: 35px;
+}
+

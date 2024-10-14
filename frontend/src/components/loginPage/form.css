@@ -5,13 +5,16 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  box-shadow: #c4c4c4 0 0 15px;
+  box-shadow: #680d0d 0 0 15px;
   border: black solid 2px;
   border-radius: 10px;
-  background: white;
+  background: rgb(255, 255, 255);
 }
-#root {
+.fundo {
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(90deg, #8840e7, #d82020);
 }

@@ -1,12 +1,12 @@
 import Sidebar from "./components/Sidebar";
-import "./Home.scss"
+import "./Home.css";
 
 function Home() {
-    return (
-        <>
-            <Sidebar></Sidebar>
-        </>
-    )
+  return (
+    <>
+      <Sidebar></Sidebar>
+    </>
+  );
 }
 
 export default Home;
