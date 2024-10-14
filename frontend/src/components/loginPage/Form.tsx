@@ -4,7 +4,7 @@ import Input from "../defaults/Input";
 
 function LoginForm() {
   return (
-    <div className="fundo flex flex-col items-center w-full sm:w-96 h-1/2">
+    <div className="fundo">
       <img src={logo} className="m-3" alt="" width={75} />
       <form action="home" method="get" className="loginform">
         <p className="m-3">Entre na barbearia</p>

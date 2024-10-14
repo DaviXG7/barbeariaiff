@@ -1,19 +1,29 @@
 import { Link } from "react-router-dom";
 import "./sidebar.css";
+import imagem from "../../../imgs/cliente.jpg";
 
 function Sidebar() {
   return (
-    <nav  id="caixa">
-      <div id="posição_superior">
-        <Link to="">Clientes</Link>
-        <Link to="">Barbeiros</Link>
-      </div>
-      <div>
-        <Link to={""}>Criar usuário</Link>
-      </div>
+    <nav className="sidebar">
+      <div className="flex sm:flex-col  lg:items-center">
+        <Link className="btn m-2" to="">
+          Clientes{" "}
+        </Link>
 
-      <div>
-        <Link to={""}>User</Link>
+        <Link className="btn m-2" to="">
+          Barbeiros
+        </Link>
+
+        <Link className="btn m-2" to="">
+          ADM
+        </Link>
+      </div>
+      <div className=""></div>
+
+      <div className="flex sm:flex-col items-center">
+        <Link to={""} className="m-2">
+          <img src={imagem} width="80" alt="Imagem de usuário" />
+        </Link>
       </div>
     </nav>
   );

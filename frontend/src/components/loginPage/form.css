@@ -2,10 +2,11 @@
   width: 75%;
   height: 300px;
   display: flex;
+  @apply sm:w-1/3;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  box-shadow: #680d0d 0 0 15px;
+  box-shadow: rgb(255, 0, 55), rgb(102, 0, 128) 0 0 15px;
   border: black solid 2px;
   border-radius: 10px;
   background: rgb(255, 255, 255);
@@ -14,6 +15,7 @@
   width: 100%;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: linear-gradient(90deg, #8840e7, #d82020);
