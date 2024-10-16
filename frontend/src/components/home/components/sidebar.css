@@ -14,22 +14,39 @@
 
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  @apply sm:justify-around justify-between;
   background: linear-gradient(75deg, #6832d4, #ff5d5d);
 }
 .sidebar img {
   border-radius: 314159265px;
 }
 .btn {
-  @apply bg-white text-center bg-opacity-80 hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded transition delay-100;
+  @apply bg-white text-center bg-opacity-80 text-red-700 font-semibold py-2 px-4 border border-red-500 rounded;
+}
+.btn:hover {
+  border: none;
+  color: white;
+  background-color: #db5858;
+  transition: 0.3s ease-in-out;
+  transform: scale(1.03) translateY(-5px);
 }
 
 .fundo-sidebar {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
 
   z-index: -9999;
+}
+
+.menu {
+  width: 100%;
+  position: fixed;
+  top: 110px;
+  left: 0;
+  z-index: 99;
+  background: linear-gradient(75deg, #4b2f83, #8b2525);
+  padding: 10px 0 10px 0;
 }
 
 .sidebar:hover {
