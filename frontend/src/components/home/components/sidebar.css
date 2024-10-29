@@ -8,9 +8,7 @@
   left: 0;
   padding: 10px;
 
-  width: 100%;
-
-  @apply sm:h-full sm:w-40 sm:flex-col;
+  @apply sm:h-full sm:w-40 sm:flex-col w-full;
 
   display: flex;
   align-items: center;
@@ -47,36 +45,4 @@
   z-index: 99;
   background: linear-gradient(75deg, #4b2f83, #8b2525);
   padding: 10px 0 10px 0;
-}
-
-.sidebar:hover {
-  background: linear-gradient(
-    45deg,
-    rgb(255, 2, 15),
-    rgb(243, 0, 81),
-    rgb(232, 2, 240),
-    rgb(151, 2, 250),
-    rgb(17, 0, 255),
-    rgb(55, 0, 255),
-    rgb(111, 0, 255),
-    rgb(183, 0, 255),
-    rgb(255, 0, 234),
-    rgb(255, 0, 149),
-    rgb(255, 0, 64),
-    rgb(255, 0, 76),
-    rgb(255, 2, 15)
-  );
-  transition: 0.5s;
-}
-
-@keyframes glowing {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 0 400%;
-  }
-  100% {
-    background-position: 0 0;
-  }
 }

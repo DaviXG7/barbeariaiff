@@ -66,9 +66,6 @@ function Sidebar() {
             Barbeiros
           </Link>
 
-          <Link className="btn m-2 sm:w-28" to="">
-            ADM
-          </Link>
           <Link className="btn m-2 sm:w-28 sm:mt-16" to="">
             Pendentes
           </Link>

@@ -4,6 +4,7 @@
   flex-direction: column;
   position: relative;
   margin: 20px;
+  z-index: 1;
 }
 
 .input label {
@@ -14,7 +15,8 @@
   border-radius: 100px;
 }
 
-.input input {
+.input input,
+select {
   border: 1px black solid;
   border-radius: 10px;
   width: 100%;

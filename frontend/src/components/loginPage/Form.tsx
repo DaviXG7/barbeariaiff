@@ -6,7 +6,7 @@ function LoginForm() {
   return (
     <div className="fundo">
       <img src={logo} className="m-3" alt="" width={75} />
-      <form action="home" method="get" className="loginform">
+      <form action="inicio" method="get" className="loginform">
         <p className="m-3">Entre na barbearia</p>
         <Input
           name="email"

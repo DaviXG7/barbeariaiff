@@ -1,3 +1,18 @@
 #root:after {
   background: white;
 }
+main {
+  padding: 10px 10px 10px 175px;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 640px) {
+  main {
+    padding-left: 0;
+    padding: 125px 10px 10px 10px;
+  }
+}

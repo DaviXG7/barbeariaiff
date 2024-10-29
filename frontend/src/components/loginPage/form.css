@@ -1,6 +1,6 @@
 .loginform {
   width: 75%;
-  height: 300px;
+  min-height: 300px;
   display: flex;
   @apply sm:w-1/3;
   flex-direction: column;
