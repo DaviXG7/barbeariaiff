@@ -1,5 +1,3 @@
-import Input from "../defaults/Input";
-
 export default function Form(props: {
   method: string;
   action: string;

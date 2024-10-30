@@ -1,11 +1,14 @@
 import { ChangeEventHandler } from "react";
 import "./input.css";
 
+type CallbackFunction = () => void;
+
 function Input(props: {
   name: string;
   type: string;
   placeholder: string;
   label: string;
+  onChange?: CallbackFunction;
 }) {
   return (
     <div className="input">
@@ -20,6 +23,7 @@ function Input(props: {
         <>
           <label htmlFor={props.name}>{props.label}</label>
           <input
+            onChange={props.onChange}
             id={props.name}
             type={props.type}
             name={props.name}
