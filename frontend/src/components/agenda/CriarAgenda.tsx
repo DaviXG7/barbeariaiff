@@ -24,32 +24,27 @@ export default function CriarAgenda() {
       <Input
         name="inicio"
         type="time"
-        placeholder="Horário de inicio"
         label="Início:"
       ></Input>
       <Input
         name="fim"
         type="time"
-        placeholder="Horário de fim"
         label="Fim:"
       ></Input>
       <Input
         name="inicio_intervalo"
         type="time"
-        placeholder="Horário de inicio de intervalo"
         label="Início de intervalo:"
       ></Input>
       <Input
         name="fim_intervalo"
         type="time"
-        placeholder="Horário de Fim de intervalo"
         label="Fim de intervalo:"
       ></Input>
 
       <Input
         name="enviar"
         type="submit"
-        placeholder="Cadastrar"
         label="Cadastrar"
       ></Input>
     </Form>

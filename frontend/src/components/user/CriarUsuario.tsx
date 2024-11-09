@@ -29,7 +29,6 @@ export default function CriarUsuario() {
       <Input
         name="data_nasc"
         type="date"
-        placeholder="Data"
         label="Data de nascimento:"
       ></Input>
       <div className="input">
@@ -63,6 +62,12 @@ export default function CriarUsuario() {
             placeholder="Digite a chave pix"
             label="Chave PIX:"
           ></Input>
+        <Input
+            name="banco"
+            type="text"
+            placeholder="Digite o nome do banco"
+            label="Banco:"
+          ></Input>
           <Input
             name="conta"
             type="number"
@@ -75,18 +80,12 @@ export default function CriarUsuario() {
             placeholder="Digite o número da agência"
             label="Número da agência:"
           ></Input>
-          <Input
-            name="banco"
-            type="text"
-            placeholder="Digite o nome do banco"
-            label="Banco:"
-          ></Input>
+        
         </>
       )}
       <Input
         name="enviar"
         type="submit"
-        placeholder="Cadastrar"
         label="Cadastrar"
       ></Input>
     </Form>

@@ -58,21 +58,27 @@ function Sidebar() {
           </button>
         </div>
         <div className="hidden sm:flex sm:flex-col">
-          <Link className="btn m-2 sm:w-28" to="">
+        <Link className="btn m-2 sm:w-28 mb-16" to="/">
+            Inicio{" "}
+          </Link>
+          <Link className="btn m-2 sm:w-28" to="/usuarios">
             Clientes{" "}
           </Link>
 
-          <Link className="btn m-2 sm:w-28" to="">
+          <Link className="btn m-2 sm:w-28" to="/usuarios">
             Barbeiros
           </Link>
+          <Link className="btn m-2 sm:w-28" to="/agendas">
+            Agendas
+          </Link>
 
-          <Link className="btn m-2 sm:w-28 sm:mt-16" to="">
+          <Link className="btn m-2 sm:w-28 sm:mt-16" to="/pendentes">
             Pendentes
           </Link>
         </div>
 
         <div className="flex sm:flex-col items-center">
-          <Link to={""} className="m-2">
+          <Link to={"usuario/editar"} className="m-2">
             <img
               src={imagem}
               width="80px"
@@ -85,18 +91,20 @@ function Sidebar() {
       {!hidden && (
         <nav className="menu sm:hidden transition-opacity rounded-b-2xl">
           <div className="flex flex-col">
-            <Link className="btn m-2 sm:w-28" to="">
+          <Link className="btn m-2 sm:w-28" to="/">
+              Inicio{" "}
+            </Link>
+            <Link className="btn m-2 sm:w-28" to="/usuarios">
               Clientes{" "}
             </Link>
 
-            <Link className="btn m-2 sm:w-28" to="">
+            <Link className="btn m-2 sm:w-28" to="/usuarios">
               Barbeiros
             </Link>
-
-            <Link className="btn m-2 sm:w-28" to="">
-              ADM
-            </Link>
-            <Link className="btn m-2 sm:w-28 sm:mt-16" to="">
+            <Link className="btn m-2 sm:w-28" to="/agendas">
+            Agendas
+          </Link>
+            <Link className="btn m-2 sm:w-28 sm:mt-16" to="/agenda/pendentes">
               Pendentes
             </Link>
           </div>

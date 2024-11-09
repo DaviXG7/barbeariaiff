@@ -10,6 +10,7 @@ function Home() {
       <Sidebar></Sidebar>
       <CreateButton></CreateButton>
       <Outlet />
+      
     </main>
   );
 }

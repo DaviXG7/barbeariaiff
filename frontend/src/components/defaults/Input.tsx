@@ -4,9 +4,9 @@ import "./input.css";
 type CallbackFunction = () => void;
 
 function Input(props: {
-  name: string;
+  name?: string;
   type: string;
-  placeholder: string;
+  placeholder?: string;
   label: string;
   onChange?: CallbackFunction;
 }) {
@@ -17,7 +17,7 @@ function Input(props: {
           id={props.name}
           type={props.type}
           name={props.name}
-          value={props.placeholder}
+          value={props.label}
         />
       ) : (
         <>

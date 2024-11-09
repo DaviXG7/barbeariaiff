@@ -15,7 +15,7 @@ function CreateButton() {
             <Link className="btn" to={"/agenda/criar"}>
               Criar agenda
             </Link>
-            <Link className="btn" to={"/agenda/agendar"}>
+            <Link className="btn" to={"/agendar"}>
               Agendar
             </Link>
           </div>

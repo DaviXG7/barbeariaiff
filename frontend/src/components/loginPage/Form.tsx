@@ -20,7 +20,7 @@ function LoginForm() {
           placeholder="Digite sua senha"
           label="Senha:"
         ></Input>
-        <Input name="entre" type="submit" placeholder="Entrar" label=""></Input>
+        <Input name="entre" type="submit" label="Entrar"></Input>
       </form>
     </div>
   );
