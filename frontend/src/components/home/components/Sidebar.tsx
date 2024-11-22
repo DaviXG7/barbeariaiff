@@ -62,17 +62,13 @@ function Sidebar() {
             Inicio{" "}
           </Link>
           <Link className="btn m-2 sm:w-28" to="/usuarios">
-            Clientes{" "}
-          </Link>
-
-          <Link className="btn m-2 sm:w-28" to="/usuarios">
-            Barbeiros
+            Usuarios
           </Link>
           <Link className="btn m-2 sm:w-28" to="/agendas">
             Agendas
           </Link>
 
-          <Link className="btn m-2 sm:w-28 sm:mt-16" to="/pendentes">
+          <Link className="btn m-2 sm:w-28 sm:mt-16" to="/agenda/pendentes">
             Pendentes
           </Link>
         </div>
@@ -95,11 +91,7 @@ function Sidebar() {
               Inicio{" "}
             </Link>
             <Link className="btn m-2 sm:w-28" to="/usuarios">
-              Clientes{" "}
-            </Link>
-
-            <Link className="btn m-2 sm:w-28" to="/usuarios">
-              Barbeiros
+              Usuarios{" "}
             </Link>
             <Link className="btn m-2 sm:w-28" to="/agendas">
             Agendas

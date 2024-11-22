@@ -1,4 +1,3 @@
-import { ChangeEventHandler } from "react";
 import "./input.css";
 
 type CallbackFunction = () => void;
@@ -9,6 +8,8 @@ function Input(props: {
   placeholder?: string;
   label: string;
   onChange?: CallbackFunction;
+  value?: string
+  disabled?: boolean
 }) {
   return (
     <div className="input">
@@ -27,6 +28,8 @@ function Input(props: {
             id={props.name}
             type={props.type}
             name={props.name}
+            value={props.value}
+            disabled={props.disabled}
             placeholder={props.placeholder}
           />
         </>

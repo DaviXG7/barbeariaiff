@@ -12,10 +12,10 @@ export default function CriarUsuario() {
   const [user, setUser] = useState(User.CLIENTE);
 
   return (
-    <Form method={"post"} action="home">
+    <Form method={"post"} action="http://localhost/ParteDavi/controller/cadastrar_usuario.php">
       <h1 className="text-3xl">Criar usuário</h1>
       <Input
-        name="name"
+        name="nome"
         type="text"
         placeholder="Digite o nome do usuário"
         label="Nome:"
@@ -27,7 +27,7 @@ export default function CriarUsuario() {
         label="Email:"
       ></Input>
       <Input
-        name="data_nasc"
+        name="data_de_nascimento"
         type="date"
         label="Data de nascimento:"
       ></Input>
@@ -57,25 +57,25 @@ export default function CriarUsuario() {
       {user == User.BARBEIRO && (
         <>
           <Input
-            name="pix"
+            name="chave_pix"
             type="text"
             placeholder="Digite a chave pix"
             label="Chave PIX:"
           ></Input>
         <Input
-            name="banco"
+            name="nome_do_banco"
             type="text"
             placeholder="Digite o nome do banco"
             label="Banco:"
           ></Input>
           <Input
-            name="conta"
+            name="numero_da_conta"
             type="number"
             placeholder="Digite o número da conta"
             label="Número da conta:"
           ></Input>
           <Input
-            name="agencia"
+            name="numero_da_agencia"
             type="number"
             placeholder="Digite o número da agência"
             label="Número da agência:"
