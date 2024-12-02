@@ -11,8 +11,18 @@ enum User {
 export default function CriarUsuario() {
   const [user, setUser] = useState(User.CLIENTE);
 
+  const [message, setMessage] = useState({success: "", error: ""});
+
+
   return (
-    <Form method={"post"} action="http://localhost/ParteDavi/controller/cadastrar_usuario.php">
+    <Form
+        id={"criarUsuario"}
+        method={"post"}
+        action="controller/cadastrar_usuario.php"
+        onRespose={(r: any) => {
+          setMessage(r)
+        }}
+    >
       <h1 className="text-3xl">Criar usuário</h1>
       <Input
         name="nome"
@@ -34,7 +44,7 @@ export default function CriarUsuario() {
       <div className="input">
         <label>Selecione o grupo do usuário</label>
         <select
-          name="usuario"
+          name="tipo"
           onChange={(option) => {
             setUser(User[option.target.value as keyof typeof User]);
           }}
@@ -88,6 +98,8 @@ export default function CriarUsuario() {
         type="submit"
         label="Cadastrar"
       ></Input>
+      {message.success && (<small className={"text-green-500 mb-2"}>{message.success}</small>)}
+      {message.error && (<small className={"text-red-600 mb-2"}>{message.error}</small>)}
     </Form>
   );
 }
