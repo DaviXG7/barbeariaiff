@@ -12,6 +12,10 @@ $data = json_decode(file_get_contents('php://input'), true);
 ini_set('display_errors', '0');
 error_reporting("0");
 
+if ($_SERVER['REQUEST_METHOD'] != "POST") {
+    die('{"error": "Use método POST"}');
+}
+
 
 $inicio = strtotime($data['inicio']);
 $inicio_intervalo = strtotime($data['inicio_intervalo']);

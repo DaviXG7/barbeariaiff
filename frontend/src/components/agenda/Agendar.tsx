@@ -1,18 +1,18 @@
 import Form from "../defaults/Form";
 import Input from "../defaults/Input";
-import {FormEvent, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 
 async function fetchGet(url: string) {
     const response = await fetch("http://localhost/" + url)
 
-    return await response.json()
+    return response.json()
 }
 
 export default function Agendar() {
 
   const [clientes, setClientes] = useState([{nome: "", id: ""}]);
 
-  const[barbeiros, setBarbeiros] = useState([{nome_barbeiro: "", id: "", horario: ""}]);
+  const[barbeiros, setBarbeiros] = useState([{nome_barbeiro: "", id_agenda: "", horario: ""}]);
 
   const [message, setMessage] = useState({success: "", error: ""});
 
@@ -68,7 +68,7 @@ export default function Agendar() {
         <div className="input">
           <label>Selecione o barbeiro</label>
           <select name={"barbeiro"}>
-            {barbeiros.map((barbeiro) => <option value={barbeiro.id}>{barbeiro.nome_barbeiro} {barbeiro.horario}</option>)}
+            {barbeiros.map((barbeiro) => <option value={barbeiro.id_agenda}>{barbeiro.nome_barbeiro} {barbeiro.horario}</option>)}
 
           </select>
         </div>
