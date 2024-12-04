@@ -1,7 +1,7 @@
 import {FormEvent} from "react";
 
-async function submit(event: FormEvent, id: string, method: string, url: string) : Promise<{}> {
-  event.preventDefault()
+async function submit(event: FormEvent, id: string, method: string, url: string): Promise<{}> {
+  event.preventDefault();
 
   const formHTML = document.getElementById(id) as HTMLFormElement;
 
@@ -10,20 +10,25 @@ async function submit(event: FormEvent, id: string, method: string, url: string)
     return {};
   }
 
-  const form = new FormData(formHTML);
-
-  const formObject: Record<string, any> = {};
-  form.forEach((value, key) => {
-    formObject[key] = value;
-  });
+  const form = new FormData(formHTML);  // Cria o FormData com os dados do formulário
 
   const response = await fetch("http://localhost/" + url, {
     method: method,
-    body: JSON.stringify(formObject),
-  })
+    body: form,  // Passa o FormData diretamente
+  });
 
-  return response.json();
+  const responseText = await response.text();
+
+  console.log(responseText);
+
+  if (responseText === "") {
+    // @ts-ignore
+    return null;
+  }
+
+  return JSON.parse(responseText);
 }
+
 
 
 export default function Form(props: {

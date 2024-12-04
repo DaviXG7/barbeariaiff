@@ -1,12 +1,10 @@
 <?php
 include "../connection.php";
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: *");
+header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
-
-
-$data = json_decode(file_get_contents('php://input'), true);
 
 ini_set('display_errors', '0');
 error_reporting("0");
@@ -16,18 +14,18 @@ if ($_SERVER['REQUEST_METHOD'] != "POST") {
     die('{"error": "Use método POST"}');
 }
 
-$tipo = $data['tipo'];
+$tipo = $_POST['tipo'];
 
-$nome = $data['nome'];
-$data_de_nascimento = $data['data_de_nascimento'];
-$email = $data['email'];
+$nome = $_POST['nome'];
+$data_de_nascimento = $_POST['data_de_nascimento'];
+$email = $_POST['email'];
 
-$senha = $data['senha'];
+$senha = $_POST['senha'];
 
-$nome_do_banco = $data['nome_do_banco'];
-$numero_da_agencia = $data['numero_da_agencia'];
-$numero_da_conta = $data['numero_da_conta'];
-$chave_pix = $data['chave_pix'];
+$nome_do_banco = $_POST['nome_do_banco'];
+$numero_da_agencia = $_POST['numero_da_agencia'];
+$numero_da_conta = $_POST['numero_da_conta'];
+$chave_pix = $_POST['chave_pix'];
 
 if ($nome == "" || $data_de_nascimento == "" || $email == "") {
     die('{"die": "Preencha todos os campos"}');

@@ -56,7 +56,7 @@ export default function CriarUsuario() {
           <option value="ADMINISTRADOR">Administrador</option>
         </select>
       </div>
-      {user == User.ADMINISTRADOR && (
+      {user === User.ADMINISTRADOR && (
         <Input
           name="senha"
           type="password"
@@ -64,7 +64,7 @@ export default function CriarUsuario() {
           label="Senha:"
         ></Input>
       )}
-      {user == User.BARBEIRO && (
+      {user === User.BARBEIRO && (
         <>
           <Input
             name="chave_pix"

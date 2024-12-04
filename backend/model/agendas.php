@@ -80,11 +80,11 @@ class BarbeirosDisponiveis
 
     }
 
-public static function getAll($date): array
-{
-    $dia = date('w', strtotime($date));
+    public static function getAll($date): array
+    {
+        $dia = date('w', strtotime($date));
 
-    $sql_disponivel = "
+        $sql_disponivel = "
     SELECT a.id, a.horario, u.nome
     FROM agendas AS a
     INNER JOIN usuarios AS u
@@ -96,28 +96,24 @@ public static function getAll($date): array
         WHERE ag.id_agenda = a.id
     )";
 
-    $conn = Connection::con();
+        $conn = Connection::con();
 
-    if (!$conn) {
-        die("Erro na conexão com o banco de dados.");
-    }
+        $disponiveis = [];
 
-    $disponiveis = [];
+        $result = $conn->query($sql_disponivel);
 
-    $result = $conn->query($sql_disponivel);
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $disponiveis[] = new BarbeirosDisponiveis(
-                $row["id"],
-                $row["nome"],
-                $row["horario"]
-            );
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $disponiveis[] = new BarbeirosDisponiveis(
+                    $row["id"],
+                    $row["nome"],
+                    $row["horario"]
+                );
+            }
         }
-    }
 
-    return $disponiveis;
-}
+        return $disponiveis;
+    }
 
 
 }
@@ -125,17 +121,132 @@ public static function getAll($date): array
 class Agendamento
 {
     public $id;
-    public $id_cliente;
-    public $id_barbeiro;
-    public $id_servico;
-    public $dia_e_horario;
+    public $data;
+    public $horario;
+    public $servico;
+    public $nome_barbeiro;
+    public $nome_cliente;
+    public $email_cliente;
+    public $imagem_cliente;
 
-    public function __construct($id_cliente, $id_barbeiro, $id_servico, $dia_e_horario)
+    public function __construct($id, $data, $horario, $servico, $nome_barbeiro, $nome_cliente, $email_cliente, $imagem_cliente)
     {
-        $this->id_cliente = $id_cliente;
-        $this->id_barbeiro = $id_barbeiro;
-        $this->id_servico = $id_servico;
-        $this->dia_e_horario = $dia_e_horario;
+        $this->id = $id;
+        $this->data = $data;
+        $this->horario = $horario;
+        $this->servico = $servico;
+        $this->nome_barbeiro = $nome_barbeiro;
+        $this->nome_cliente = $nome_cliente;
+        $this->email_cliente = $email_cliente;
+        $this->imagem_cliente = $imagem_cliente;
     }
+
+    public static function getAll(): array
+    {
+
+        $conn = Connection::con();
+
+        $sql_agenda = "
+        SELECT
+            ag.id AS id_agenda,
+            ag.data AS data,
+            ag.id_servico AS servico,
+            a.horario AS hora,
+            c.nome AS nome_cliente,
+            c.email AS email_cliente,
+            c.imagem AS imagem_cliente,
+            b.nome AS nome_barbeiro
+        FROM agendamentos AS ag
+        INNER JOIN agendas as a
+            ON a.id = ag.id_agenda
+        INNER JOIN usuarios as c
+            ON c.id = ag.id_cliente
+        INNER JOIN usuarios as b
+            ON b.id = a.id_barbeiro;
+        ";
+
+        $agendamentos = [];
+
+        $result = $conn->query($sql_agenda);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $agendamentos[] = new Agendamento(
+                    $row["id_agenda"],
+                    $row["data"],
+                    $row["hora"],
+                    $row["servico"],
+                    $row["nome_barbeiro"],
+                    $row["nome_cliente"],
+                    $row["email_cliente"],
+                    $row["imagem_cliente"]
+                );
+            }
+        }
+
+        return $agendamentos;
+
+    }
+
+    public static function delete($id)
+    {
+        $sql = "DELETE FROM agendamentos WHERE id = '$id'";
+
+        $conn = Connection::con();
+
+        if (!$conn->query($sql)) {
+            echo "erro";
+        }
+    }
+
+public static function getToday(): array
+{
+    $conn = Connection::con();
+
+    date_default_timezone_set('America/Sao_Paulo');
+    $data = date("Y-m-d");
+
+    $sql_agenda = "
+        SELECT
+            ag.id AS id_agenda,
+            ag.data AS data,
+            ag.id_servico AS servico,
+            a.horario AS hora,
+            c.nome AS nome_cliente,
+            c.email AS email_cliente,
+            c.imagem AS imagem_cliente,
+            b.nome AS nome_barbeiro
+        FROM agendamentos AS ag
+        INNER JOIN agendas AS a
+            ON a.id = ag.id_agenda
+        INNER JOIN usuarios AS c
+            ON c.id = ag.id_cliente
+        INNER JOIN usuarios AS b
+            ON b.id = a.id_barbeiro
+        WHERE ag.data = '$data';
+    ";
+
+    $agendamentos = [];
+
+    $result = $conn->query($sql_agenda);
+
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $agendamentos[] = new Agendamento(
+                $row["id_agenda"],
+                $row["data"],
+                $row["hora"],
+                $row["servico"],
+                $row["nome_barbeiro"],
+                $row["nome_cliente"],
+                $row["email_cliente"],
+                $row["imagem_cliente"]
+            );
+        }
+    }
+
+    return $agendamentos;
+}
+
 
 }

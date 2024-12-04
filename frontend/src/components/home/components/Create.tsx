@@ -8,7 +8,10 @@ function CreateButton() {
     <div className="fixed bottom-6 right-10 z-10">
       {!hidden && (
         <body>
-          <div className="flex items-center fixed bottom-24 w-36 right-0.5 bg-black bg-transparency-75 h-48 flex-col justify-evenly rounded-2xl">
+          <div className="flex items-center fixed bottom-24 w-36 right-0.5 bg-black bg-transparency-75 h-56 flex-col justify-evenly rounded-2xl">
+            <Link className="btn" to={"/criarservico"}>
+              Criar Serviço
+            </Link>
             <Link className="btn" to={"/usuario/criar"}>
               Criar usuário
             </Link>

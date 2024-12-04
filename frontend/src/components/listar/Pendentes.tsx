@@ -2,18 +2,10 @@ import "./lista.css";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 
-async function getJson(url: string): Promise<[{
-  id: string | undefined;
-  cliente_nome: string | undefined;
-  cliente_email: string | undefined;
-  barbeiro_nome: string | undefined;
-  data: string | undefined;
-  hora: string | undefined;
-  servico: string | undefined;
-}] > {
+async function getJson(url: string) {
   const response = await fetch("http://localhost/" + url)
 
-  return await response.json()
+  return response.json()
 }
 
 export default function Pendentes() {
@@ -21,16 +13,16 @@ export default function Pendentes() {
   const [json, setJson] = useState<
       Array<{
         id: string | undefined;
-        cliente_nome: string | undefined;
-        cliente_email: string | undefined;
-        barbeiro_nome: string | undefined;
         data: string | undefined;
-        hora: string | undefined;
+        horario: string | undefined;
         servico: string | undefined;
+        nome_barbeiro: string | undefined;
+        nome_cliente: string | undefined;
+        email_cliente: string | undefined;
   }>>([]);
 
   useEffect(() => {
-    getJson("ParteDavi/api.php?tipo=agendamentos").then((r) => {
+    getJson("api.php?tipo=pendentes").then((r) => {
       console.log(r)
       setJson(r);
     });
@@ -50,13 +42,18 @@ export default function Pendentes() {
 
       {json.map((pendente) => (
         <div className="flex justify-around items-center w-full border-b border-b-gray p-1 bg-white">
-          <p className="sm:w-32 w-12 text-center flex-wrap">{pendente.cliente_nome}</p>
-          <p className="sm:w-32 w-12 text-center flex-wrap">{pendente.barbeiro_nome}</p>
-          <p className="sm:w-32 w-12 text-center flex-wrap">{pendente.data} {pendente.hora}</p>
+          <p className="sm:w-32 w-12 text-center flex-wrap">{pendente.nome_cliente}</p>
+          <p className="sm:w-32 w-12 text-center flex-wrap">{pendente.nome_barbeiro}</p>
+          <p className="sm:w-32 w-12 text-center flex-wrap">{pendente.data} {pendente.horario}</p>
           <p className="sm:w-32 w-12 text-center flex-wrap">{pendente.servico}</p>
-          <p className="sm:w-32 w-12 text-center flex-wrap">{pendente.cliente_email}</p>
+          <p className="sm:w-32 w-12 text-center flex-wrap">{pendente.email_cliente}</p>
           <div className="sm:w-32 w-12 flex items-center justify-center">
-            <Link className="btn" to={""}>Excluir</Link>
+            <button className="btn" onClick={(e) => {
+                      getJson("api.php?tipo=pendentes&delete=" + pendente.id).then((r) => {
+                        setJson(r);
+                      })
+
+                    }}>Excluir</button>
           </div>
         </div>
       ))}

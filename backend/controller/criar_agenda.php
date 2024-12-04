@@ -2,12 +2,10 @@
 include "../connection.php";
 
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: *");
+header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
-
-
-$data = json_decode(file_get_contents('php://input'), true);
 
 ini_set('display_errors', '0');
 error_reporting("0");
@@ -17,13 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] != "POST") {
 }
 
 
-$inicio = strtotime($data['inicio']);
-$inicio_intervalo = strtotime($data['inicio_intervalo']);
-$final_intervalo = strtotime($data['fim_intervalo']);
-$final = strtotime($data['fim']);
+$inicio = strtotime($_POST['inicio']);
+$inicio_intervalo = strtotime($_POST['inicio_intervalo']);
+$final_intervalo = strtotime($_POST['fim_intervalo']);
+$final = strtotime($_POST['fim']);
 
-$dia = $data['dia_da_semana'];
-$id_usuario = $data['barbeiro'];
+$dia = $_POST['dia_da_semana'];
+$id_usuario = $_POST['barbeiro'];
 $mins = ($inicio - $inicio_intervalo) / 60;
 if($mins < 0)
     $mins = $mins*(-1);

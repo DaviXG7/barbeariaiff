@@ -3,6 +3,14 @@
         {
             "type": "add",
             "pluginName": "izhangzhihao.fleet.rainbow.brackets"
+        },
+        {
+            "type": "add",
+            "pluginName": "fleet.ai"
+        },
+        {
+            "type": "add",
+            "pluginName": "fleet.aiCompletion"
         }
     ]
 }

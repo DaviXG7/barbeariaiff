@@ -4,16 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Form from "../defaults/Form";
 
-async function getJson(url: string): Promise<{
-    email: string;
-    nome: string;
-    imagem: string;
-    id: string;
-    pix: string;
-    banco: string;
-    agencia: string;
-    conta: string;
-}> {
+async function getJson(url: string) {
     const response = await fetch("http://localhost/" + url);
     return await response.json();
 }
@@ -24,7 +15,8 @@ export default function EditarUsuario() {
     const [user, setUser] = useState({
         email: "",
         nome: "",
-        imagem: "",
+        data_de_nascimento: "",
+        imagem: null,
         id: "",
         pix: "",
         banco: "",
@@ -34,7 +26,7 @@ export default function EditarUsuario() {
     const [image, setImage] = useState("https://avatars.githubusercontent.com/u/42486346?v=4");
 
     useEffect(() => {
-        getJson("ParteDavi/api.php?tipo=" + (barbeiro === "true" ? "barbeiro" : "usuario") + "&id=" + id).then((data) => {
+        getJson("api.php?tipo=" + (barbeiro === "true" ? "barbeiro" : "usuario") + "&id=" + id).then((data) => {
             setUser(data);
             if (data.imagem) setImage(data.imagem);
         });
@@ -48,7 +40,7 @@ export default function EditarUsuario() {
     return (
         <Form
             styles="editar"
-            action={"ParteDavi/controller/editar_usuario.php?user_id=" + id + "&barbeiro=" + barbeiro}
+            action={"controller/editar_usuario.php?id=" + id + "&barbeiro=" + barbeiro}
             id={"editar"}
             method={"post"}
             onRespose={(r: any) => {
@@ -90,6 +82,13 @@ export default function EditarUsuario() {
                         label={"Nome:"}
                         value={user.nome}
                         onChange={handleInputChange}
+                    />
+                    <Input
+                        name={"data"}
+                        type={"date"}
+                        placeholder={"Edite a data d enascimento"}
+                        label={"Data de nascimento:"}
+                        value={user.data_de_nascimento}
                     />
                     <Input
                         name={"email"}

@@ -3,7 +3,7 @@ import Input from "../defaults/Input";
 import {useEffect, useState} from "react";
 
 async function fetchGet(url: string) {
-    const response = await fetch("http://localhost/" + url)
+  const response = await fetch("http://localhost/" + url)
 
     return response.json()
 }
@@ -29,6 +29,15 @@ export default function Agendar() {
         action="controller/criar_agendamento.php" method="post"
         onRespose={(r: any) => {
           setMessage(r)
+
+          // @ts-ignore
+          const inputDia : HTMLInputElement | null = document.getElementById("dia");
+
+          fetchGet("api.php?tipo=disponivel&dia=" + inputDia?.value).then(
+            (r) => {
+              return setBarbeiros(r);
+            }
+        )
         }}
     >
 

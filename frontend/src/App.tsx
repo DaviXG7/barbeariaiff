@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
   BrowserRouter as Router,
   Navigate,
@@ -16,12 +16,28 @@ import EditarUsuario from "./components/user/EditarUsuario";
 import Usuarios from "./components/listar/Usuarios";
 import Agendas from "./components/listar/Agendas";
 import Pendentes from "./components/listar/Pendentes";
+import CriarServico from "./components/agenda/CriarServico";
 
-const isAuthenticated = () => {
-  return true; // Simule um usuário autenticado com true
-};
+const isAuthenticated = () => localStorage.getItem("id") !== null;
 
 function App() {
+
+  const [authStatus, setAuthStatus] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkAuth = () => {
+      const isAuth = isAuthenticated();
+      setAuthStatus(isAuth);
+    };
+
+    checkAuth();
+  }, []);
+
+
+  if (authStatus === null) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Router>
       <Routes>
@@ -32,7 +48,7 @@ function App() {
         <Route
           path="/"
           element={
-            isAuthenticated() ? (
+            authStatus ? (
               <Navigate to="/inicio" />
             ) : (
               <Navigate to="/login" />
@@ -42,12 +58,13 @@ function App() {
 
         <Route
           path="/"
-          element={isAuthenticated() ? <Home /> : <Navigate to="/login" />}
+          element={authStatus ? <Home /> : <Navigate to="/login" />}
         >
           <Route path="inicio" element={<PendentesHoje/>}/>
           <Route path="usuarios" element={<Usuarios />} />
           <Route path="agendas" element={<Agendas />} />
           <Route path="agendar" element={<Agendar />} />
+          <Route path="criarservico" element={< CriarServico/>} />
 
 
           <Route path="usuario">

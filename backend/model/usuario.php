@@ -150,4 +150,22 @@ class Barbeiro extends Usuario
 
         return $users;
     }
+
+    public static function getBarbeiro($id): ?Barbeiro
+    {
+        $conn = Connection::con();
+
+        $sql = "SELECT * FROM usuarios as u INNER JOIN barbeiros as b ON u.id = b.id_usuario WHERE u.id = " . $id;
+
+        $result = $conn->query($sql);
+
+
+        if ($result->num_rows > 0) {
+            if ($row = $result->fetch_assoc()) {
+                return new Barbeiro($row["id_usuario"], $row["nome"], $row["email"], $row["imagem"], $row["data_nascimento"], $row['pix'], $row['banco'], $row['agencia'], $row['conta']);
+            }
+        }
+
+        return null;
+    }
 }
