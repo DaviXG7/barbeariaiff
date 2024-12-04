@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "./sidebar.css";
-import imagem from "../../../imgs/cliente.jpg";
 import { useState } from "react";
 function Sidebar() {
   let [hidden, setHidden] = useState(true);
+
+  const imagem = localStorage.getItem("imagem");
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -74,14 +77,21 @@ function Sidebar() {
         </div>
 
         <div className="flex sm:flex-col items-center">
-          <Link to={"usuario/editar"} className="m-2">
+          <Link to={"usuario/editar/" + localStorage.getItem("id") + "/false"} className="m-2">
             <img
-              src={imagem}
+              src={imagem ? imagem : "https://th.bing.com/th/id/OIP.HHVUf3TYqncgpJXyCMmxyAHaHa?w=208&h=207&c=7&r=0&o=5&dpr=1.3&pid=1.7"}
               width="80px"
               height="80px"
               alt="Imagem de usuário"
             />
           </Link>
+          <button className="btn" onClick={() => {
+                    localStorage.clear()
+
+                    navigate("/login")
+                  }}>
+             Sair
+          </button>
         </div>
       </nav>
       {!hidden && (

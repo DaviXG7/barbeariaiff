@@ -63,11 +63,11 @@ export default function Agendas() {
             className="sm:w-32 sm:h-32 w-12 h-12"
             width={100}
             height={100}
-            src={agenda.imagem_barbeiro}
+            src={!agenda.imagem_barbeiro ? "https://th.bing.com/th/id/OIP.HHVUf3TYqncgpJXyCMmxyAHaHa?w=208&h=207&c=7&r=0&o=5&dpr=1.3&pid=1.7" : agenda.imagem_barbeiro}
           ></img>
           <p className="sm:w-32 w-12 text-center flex-wrap">{agenda.nome_barbeiro}</p>
           <p className="sm:w-32 w-12 text-center flex-wrap">{getDiaDaSemana(agenda.dia_semana)}</p>
-          <p className="sm:w-32 w-12 text-center flex-wrap">{agenda.horario}</p>
+          <p className="sm:w-32 w-12 text-center flex-wrap">{agenda.horario?.split(":")[0] + "h " + agenda.horario?.split(":")[1] + "min"}</p>
           <div className="sm:w-32 w-12 flex items-center justify-center">
             <button className="btn" onClick={(e) => {
                       fetchGet("api.php?tipo=agendas&delete=" + agenda.id).then((r) => {

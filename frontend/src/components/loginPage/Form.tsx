@@ -24,6 +24,7 @@ function LoginForm() {
 
               if (r.hasOwnProperty("id")) {
                 localStorage.setItem("id", r.id)
+                localStorage.setItem("imagem", r.imagem)
                 navigate('/inicio');
                 console.log("Usuário autenticado");
               }

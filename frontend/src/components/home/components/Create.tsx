@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import imagem from "../../../imgs/create.jpg";
+
 
 function CreateButton() {
   let [hidden, setHidden] = useState(true);
@@ -29,9 +31,9 @@ function CreateButton() {
         onClick={function () {
           setHidden(!hidden);
         }}
-        className="text-5xl text-center text-white w-16 h-16 rounded-full bg-green-500"
+        className="text-5xl text-center text-white w-16 h-16 rounded-full bg-green-500 flex items-center justify-center"
       >
-        +
+        <img className={"rounded-full w-14 h-14"} src={imagem} alt="" />
       </button>
     </div>
   );

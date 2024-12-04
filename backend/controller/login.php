@@ -27,15 +27,16 @@ $senha = $_POST['senha'];
 
 $conn = Connection::con();
 
-$sql = "SELECT u.id FROM usuarios as u INNER JOIN administradores as a ON u.id = a.id_usuario WHERE u.email = '$email' AND a.senha = '$senha' LIMIT 1";
+$sql = "SELECT u.id, u.imagem FROM usuarios as u INNER JOIN administradores as a ON u.id = a.id_usuario WHERE u.email = '$email' AND a.senha = '$senha' LIMIT 1";
 
 $result = $conn->query($sql);
 
 $id = "";
+$imagem = "";
 if ($result->num_rows > 0) {
     if ($row = $result->fetch_assoc()) {
         $id = $row['id'];
-        $_SESSION['id'] = $id;
+        $imagem = $row['imagem'];
     }
 } else {
     die('{"error": "Email ou senha inválida!"}');
@@ -43,4 +44,4 @@ if ($result->num_rows > 0) {
 
 
 
-echo '{"success": "Usuário autorizado!", "id": "'.$id.'"}';
+echo '{"success": "Usuário autorizado!", "id": "'.$id.'", "imagem": "'.$imagem.'"}';

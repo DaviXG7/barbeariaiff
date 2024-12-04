@@ -75,5 +75,9 @@ switch ($tipo) {
         echo json_encode(Barbeiro::getBarbeiro($_GET["id"]), JSON_PRETTY_PRINT);
         return;
     }
+    case "servicos": {
+        echo json_encode(Servico::getAll(), JSON_PRETTY_PRINT);
+        return;
+    }
 }
 

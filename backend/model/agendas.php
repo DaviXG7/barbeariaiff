@@ -66,6 +66,45 @@ class Agenda
 
 }
 
+class Servico
+{
+    public $id;
+    public $nome;
+    public $preco;
+
+    public function __construct($id, $nome, $preco)
+    {
+        $this->id = $id;
+        $this->nome = $nome;
+        $this->preco = $preco;
+
+    }
+
+    public static function getAll(): array
+    {
+
+        $sql_disponivel = "SELECT * FROM servicos";
+
+        $conn = Connection::con();
+
+        $servicos = [];
+
+        $result = $conn->query($sql_disponivel);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $servicos[] = new Servico(
+                    $row["id"],
+                    $row["nome"],
+                    $row["preco"]
+                );
+            }
+        }
+
+        return $servicos;
+    }
+}
+
 class BarbeirosDisponiveis
 {
     public $id_agenda;
@@ -124,17 +163,19 @@ class Agendamento
     public $data;
     public $horario;
     public $servico;
+    public $preco;
     public $nome_barbeiro;
     public $nome_cliente;
     public $email_cliente;
     public $imagem_cliente;
 
-    public function __construct($id, $data, $horario, $servico, $nome_barbeiro, $nome_cliente, $email_cliente, $imagem_cliente)
+    public function __construct($id, $data, $horario, $servico, $preco, $nome_barbeiro, $nome_cliente, $email_cliente, $imagem_cliente)
     {
         $this->id = $id;
         $this->data = $data;
         $this->horario = $horario;
         $this->servico = $servico;
+        $this->preco = $preco;
         $this->nome_barbeiro = $nome_barbeiro;
         $this->nome_cliente = $nome_cliente;
         $this->email_cliente = $email_cliente;
@@ -150,7 +191,8 @@ class Agendamento
         SELECT
             ag.id AS id_agenda,
             ag.data AS data,
-            ag.id_servico AS servico,
+            s.nome AS servico,
+            s.preco AS preco,
             a.horario AS hora,
             c.nome AS nome_cliente,
             c.email AS email_cliente,
@@ -162,8 +204,10 @@ class Agendamento
         INNER JOIN usuarios as c
             ON c.id = ag.id_cliente
         INNER JOIN usuarios as b
-            ON b.id = a.id_barbeiro;
-        ";
+            ON b.id = a.id_barbeiro
+        INNER JOIN servicos as s
+            ON s.id = ag.id_servico
+        ;";
 
         $agendamentos = [];
 
@@ -176,6 +220,7 @@ class Agendamento
                     $row["data"],
                     $row["hora"],
                     $row["servico"],
+                    $row["preco"],
                     $row["nome_barbeiro"],
                     $row["nome_cliente"],
                     $row["email_cliente"],
@@ -199,18 +244,19 @@ class Agendamento
         }
     }
 
-public static function getToday(): array
-{
-    $conn = Connection::con();
+    public static function getToday(): array
+    {
+        $conn = Connection::con();
 
-    date_default_timezone_set('America/Sao_Paulo');
-    $data = date("Y-m-d");
+        date_default_timezone_set('America/Sao_Paulo');
+        $data = date("Y-m-d");
 
-    $sql_agenda = "
+        $sql_agenda = "
         SELECT
             ag.id AS id_agenda,
             ag.data AS data,
-            ag.id_servico AS servico,
+            s.nome AS servico,
+            s.preco AS preco,
             a.horario AS hora,
             c.nome AS nome_cliente,
             c.email AS email_cliente,
@@ -223,30 +269,33 @@ public static function getToday(): array
             ON c.id = ag.id_cliente
         INNER JOIN usuarios AS b
             ON b.id = a.id_barbeiro
+        INNER JOIN servicos AS s
+            ON s.id = ag.id_servico
         WHERE ag.data = '$data';
     ";
 
-    $agendamentos = [];
+        $agendamentos = [];
 
-    $result = $conn->query($sql_agenda);
+        $result = $conn->query($sql_agenda);
 
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $agendamentos[] = new Agendamento(
-                $row["id_agenda"],
-                $row["data"],
-                $row["hora"],
-                $row["servico"],
-                $row["nome_barbeiro"],
-                $row["nome_cliente"],
-                $row["email_cliente"],
-                $row["imagem_cliente"]
-            );
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $agendamentos[] = new Agendamento(
+                    $row["id_agenda"],
+                    $row["data"],
+                    $row["hora"],
+                    $row["servico"],
+                    $row["preco"],
+                    $row["nome_barbeiro"],
+                    $row["nome_cliente"],
+                    $row["email_cliente"],
+                    $row["imagem_cliente"]
+                );
+            }
         }
-    }
 
-    return $agendamentos;
-}
+        return $agendamentos;
+    }
 
 
 }

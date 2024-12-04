@@ -11,6 +11,7 @@ async function fetchGet(url: string) {
 export default function Agendar() {
 
   const [clientes, setClientes] = useState([{nome: "", id: ""}]);
+  const [servicos, setServicos] = useState([{nome: "", preco: "", id: ""}]);
 
   const[barbeiros, setBarbeiros] = useState([{nome_barbeiro: "", id_agenda: "", horario: ""}]);
 
@@ -20,6 +21,9 @@ export default function Agendar() {
   useEffect(() => {
     fetchGet("api.php?tipo=clientes").then((r) => {
       setClientes(r);
+    });
+    fetchGet("api.php?tipo=servicos").then((r) => {
+      setServicos(r);
     });
   }, []);
 
@@ -53,10 +57,7 @@ export default function Agendar() {
         <div className="input">
           <label>Selecione o serviço</label>
           <select name={"servico"}>
-            <option>Cabelo</option>
-            <option>Barba</option>
-            <option>Cabelo + Barba</option>
-            <option>Unhas</option>
+            {servicos.map((servicos) => <option value={servicos.id}>{servicos.nome + " R$" + servicos.preco}</option>)}
           </select>
         </div>
 

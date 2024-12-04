@@ -16,6 +16,17 @@ async function getJson(url: string): Promise<[{
   return response.json()
 }
 
+function formatDate(dateString : any): string {
+
+    const date = new Date(dateString);
+
+    const formatter = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short' });
+    const formattedDate = formatter.format(date);
+
+   return formattedDate;
+
+}
+
 
 export default function Usuarios() {
 
@@ -83,12 +94,12 @@ export default function Usuarios() {
                         className="sm:w-32 sm:h-32 w-12 h-12"
                         width={100}
                         height={100}
-                        src={user.imagem}
+                        src={!user.imagem ? "https://th.bing.com/th/id/OIP.HHVUf3TYqncgpJXyCMmxyAHaHa?w=208&h=207&c=7&r=0&o=5&dpr=1.3&pid=1.7" : user.imagem}
                         alt={user.nome}
                     ></img>
                     <p className="sm:w-32 w-12 text-center flex-wrap">{user.nome}</p>
                     <p className="sm:w-32 w-12 text-center flex-wrap">{user.email}</p>
-                    <p className="sm:w-32 w-12 text-center flex-wrap">{user.data_de_nascimento}</p>
+                    <p className="sm:w-32 w-12 text-center flex-wrap">{formatDate(user.data_de_nascimento)}</p>
                     <div className="sm:w-32 w-12 flex items-center justify-center">
                         <Link className="btn" to={"/usuario/editar/" + user.id + "/" + (user.pix !== undefined)}>Editar</Link>
                     </div>

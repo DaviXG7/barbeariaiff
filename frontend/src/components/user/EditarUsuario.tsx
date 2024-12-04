@@ -23,7 +23,7 @@ export default function EditarUsuario() {
         agencia: "",
         conta: "",
     });
-    const [image, setImage] = useState("https://avatars.githubusercontent.com/u/42486346?v=4");
+    const [image, setImage] = useState("https://th.bing.com/th/id/OIP.HHVUf3TYqncgpJXyCMmxyAHaHa?w=208&h=207&c=7&r=0&o=5&dpr=1.3&pid=1.7");
 
     useEffect(() => {
         getJson("api.php?tipo=" + (barbeiro === "true" ? "barbeiro" : "usuario") + "&id=" + id).then((data) => {
