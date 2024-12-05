@@ -12,4 +12,4 @@ o servidor do mysql manualmente para rodar o backend e o banco de dados.
 8. Logue com email: adm@gmail.com e senha: 123
 
 
-### Certifique que a porta do srevidor backend seja 80 e a porta do servidor react seja 3000!
+### Certifique-se que a porta do servidor backend seja 80 e a porta do servidor react seja 3000!
