@@ -35,7 +35,6 @@ export default function Pendentes() {
 
   useEffect(() => {
     getJson("api.php?tipo=pendentes").then((r) => {
-      console.log(r)
       setJson(r);
     });
   }, []);

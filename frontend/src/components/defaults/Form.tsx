@@ -19,8 +19,6 @@ async function submit(event: FormEvent, id: string, method: string, url: string)
 
   const responseText = await response.text();
 
-  console.log(responseText);
-
   if (responseText === "") {
     // @ts-ignore
     return null;

@@ -20,13 +20,10 @@ function LoginForm() {
             onRespose={(r: any) => {
               setMessage(r);
 
-
-
               if (r.hasOwnProperty("id")) {
                 localStorage.setItem("id", r.id)
                 localStorage.setItem("imagem", r.imagem)
                 navigate('/inicio');
-                console.log("Usuário autenticado");
               }
 
 

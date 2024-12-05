@@ -42,7 +42,6 @@ export default function Agendas() {
 
   useEffect(() => {
     fetchGet("api.php?tipo=agendas").then((r) => {
-      console.log(r)
       setJson(r);
     });
   }, []);

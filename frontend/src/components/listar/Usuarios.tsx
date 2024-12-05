@@ -40,8 +40,6 @@ export default function Usuarios() {
         });
     }, []);
 
-    console.log(json);
-
     return (
         <div className="lista">
             <div className="flex mb-1 gap-3">

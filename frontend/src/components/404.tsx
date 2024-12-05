@@ -1,3 +1,3 @@
 export default function NotFound() {
-  return <>404 Not found</>;
+  return <p className={"text-red-500"}>404 Not found</p>;
 }
