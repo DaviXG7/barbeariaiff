@@ -1,6 +1,6 @@
 # Como rodar nosso site da barbearia:
 
-1. Tenha o xampp instalado ou instale o apache ou
+1. Tenha o xampp instalado ou instale o apache e
 o servidor do mysql manualmente para rodar o backend e o banco de dados.
 2. Tenha o node.js instalado.
 3. Configure a pasta do apache para a pasta do backend do site
